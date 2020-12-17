@@ -184,7 +184,7 @@ class SIPUAHelper extends EventManager {
   Map<String, Object> buildCallOptions([bool voiceonly = false]) =>
       _options(voiceonly);
 
-  Map<String, Object> _options([bool voiceonly = false]) {
+  Map<String, Object> _options([bool voiceonly = false, List<dynamic> extraHeaders]) {
     // Register callbacks to desired call events
     EventManager handlers = EventManager();
     handlers.on(EventCallConnecting(), (EventCallConnecting event) {
@@ -300,7 +300,8 @@ class SIPUAHelper extends EventManager {
           <String, dynamic>{'DtlsSrtpKeyAgreement': true},
         ],
       },
-      'sessionTimersExpires': 120
+      'sessionTimersExpires': 120,
+      'extraHeaders': extraHeaders,
     };
     return _defaultOptions;
   }
