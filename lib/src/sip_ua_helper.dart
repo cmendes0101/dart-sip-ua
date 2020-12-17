@@ -68,9 +68,9 @@ class SIPUAHelper extends EventManager {
     }
   }
 
-  Future<bool> call(String target, [bool voiceonly = false]) async {
+  Future<bool> call(String target, [bool voiceonly = false, List<dynamic> extraHeaders]) async {
     if (_ua != null && _ua.isConnected()) {
-      _ua.call(target, _options(voiceonly));
+      _ua.call(target, _options(voiceonly, extraHeaders));
       return true;
     } else {
       logger.error(
